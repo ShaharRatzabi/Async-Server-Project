@@ -4,6 +4,7 @@
 const express = require("express");
 const router = express.Router();
 
+//Get developers information
 router.get("/", (req, res) => {
   const developers = [
     {
@@ -19,7 +20,8 @@ router.get("/", (req, res) => {
       email: "matanv156@gmail.com",
     },
   ];
+  //Response in JSON format
   res.json(developers);
 });
 
-module.exports = router;
+module.exports = router; // Exporting the router module

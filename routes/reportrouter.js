@@ -3,7 +3,7 @@
 
 const express = require("express");
 const router = express.Router();
-const Calories = require("../models/calories"); // Importing Calories model
+const calories = require("../models/calories"); // Importing Calories model
 
 // GET /report
 router.get("/", function (req, res) {
@@ -11,6 +11,7 @@ router.get("/", function (req, res) {
   const month = parseInt(req.query.month);
   const user_id = parseInt(req.query.user_id);
 
+  // Initializing the report
   const report = {
     breakfast: [],
     lunch: [],
@@ -18,7 +19,9 @@ router.get("/", function (req, res) {
     other: [],
   };
 
-  Calories.find({ user_id, year, month })
+  // Iterating over the calories schema and summing up the amounts between the given dates
+  calories
+    .find({ user_id, year, month })
     .then((calories) => {
       calories.forEach((calorie) => {
         report[calorie.category].push({
@@ -35,4 +38,4 @@ router.get("/", function (req, res) {
     });
 });
 
-module.exports = router;
+module.exports = router; // Exporting the router module

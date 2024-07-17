@@ -6,8 +6,10 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+//Creating DB connection
 const connectDB = async () => {
   try {
+    //Retrieving DB connection string from .env file
     await mongoose.connect(process.env.MONGODB_URI);
     console.log("MongoDB connected");
   } catch (error) {
@@ -16,4 +18,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+module.exports = connectDB; //Exporting DB connection

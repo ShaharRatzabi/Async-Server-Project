@@ -3,7 +3,7 @@
 
 const mongoose = require("mongoose");
 
-//Crearte users scheme
+//Crearte users schema
 const usersSchema = new mongoose.Schema({
   id: Number,
   first_name: String,
@@ -11,4 +11,5 @@ const usersSchema = new mongoose.Schema({
   birthday: String,
 });
 
+//Exporting users schema
 module.exports = mongoose.model("users", usersSchema);

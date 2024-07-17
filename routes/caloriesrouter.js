@@ -3,7 +3,7 @@
 
 const express = require("express");
 const router = express.Router();
-const Calories = require("../models/calories");
+const calories = require("../models/calories");
 
 router.post("/", function (req, res) {
   // Destructure request body to extract necessary fields
@@ -29,7 +29,7 @@ router.post("/", function (req, res) {
     res.status(400).send("Error: Invalid category");
     return;
   }
-  // Create a new instance of Calories model with extracted fields
+  // Create a new instance of Calories model
   const newCalorie = {
     user_id,
     year,
@@ -41,12 +41,13 @@ router.post("/", function (req, res) {
   };
 
   // Save the new calorie entry to the database
-  Calories.create(newCalorie)
+  calories
+    .create(newCalorie)
     .then(() => {
       res.status(200).send("The calorie added successfully");
     })
     .catch(() => {
-      res.status(400).send("Error creating Calorie");
+      res.status(400).send("Failed to add calorie");
     });
 });
 
